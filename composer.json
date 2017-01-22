@@ -1,0 +1,21 @@
+{
+    "name": "dixonsatit/yii2-actioncolumn",
+    "description": "Yii2 ajax delete for action column",
+    "type": "yii2-extension",
+    "keywords": ["yii2","extension"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Sathit Seethaphon",
+            "email": "dixonsatit@gmail.com"
+        }
+    ],
+    "require": {
+        "yiisoft/yii2": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "dixonsatit\\actioncolumn\\": ""
+        }
+    }
+}
