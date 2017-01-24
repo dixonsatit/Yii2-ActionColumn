@@ -24,19 +24,26 @@ class ActionColumn extends BaseActionColumn
    {
        parent::init();
        Yii::$app->controller->getView()->registerJs("
-        $('.btn-ajax-delete').on('click', function(e) {
-            var deleteUrl = $(this).data('url');
-            var pjaxContainer = $(this).data('pjaxid');
-            $.ajax({
-                url: deleteUrl,
-                type: 'post',
-                dataType: 'json'
-            }).done(function(data) {
-                $.pjax.reload({container: '#' + $.trim(pjaxContainer)});
+        $(document).on('ready pjax:success', function(){
+
+            $('.btn-ajax-delete').on('click', function(e) {
+                var deleteUrl = $(this).data('url');
+                var pjaxContainer = $(this).data('pjaxid');
+                $.ajax({
+                    url: deleteUrl,
+                    type: 'post',
+                    dataType: 'json',
+                    error: function(xhr, status, error) {
+                        console.error('There was an error with your request.' + xhr.responseText);
+                    }
+                }).done(function(data) {
+                    $.pjax.reload({container: '#' + $.trim(pjaxContainer)});
+                });
+                e.preventDefault();
             });
-            e.preventDefault();
+
         });
-       ");
+        ");
    }
 
     protected function initDefaultButtons()
