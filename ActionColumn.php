@@ -32,10 +32,7 @@ class ActionColumn extends BaseActionColumn
                 $.ajax({
                     url: deleteUrl,
                     type: 'post',
-                    dataType: 'json',
-                    error: function(xhr, status, error) {
-                        console.error('There was an error with your request.' + xhr.responseText);
-                    }
+                    dataType: 'json'
                 }).done(function(data) {
                     $.pjax.reload({container: '#' + $.trim(pjaxContainer)});
                 });
